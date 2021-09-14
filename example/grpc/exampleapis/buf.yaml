@@ -1,15 +1,15 @@
 version: v1
-name: buf.build/acme/grpc
-deps: 
+name: buf.build/acme/exampleapis
+deps:
   - buf.build/googleapis/googleapis
 lint:
   use:
     - DEFAULT
   except: 
-    - PACKAGE_VERSION_SUFFIX 
+    # - PACKAGE_VERSION_SUFFIX
+    # - PACKAGE_DIRECTORY_MATCH
     - RPC_REQUEST_STANDARD_NAME
-    - RPC_RESPONSE_STANDARD_NAME
-    - PACKAGE_DIRECTORY_MATCH
+    - RPC_RESPONSE_STANDARD_NAME  
 breaking:
   use:
     - FILE

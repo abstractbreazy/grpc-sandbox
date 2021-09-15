@@ -2,24 +2,22 @@ syntax = "proto3";
 
 package example.v1;
 
-import "google/api/annotations.proto";
-
 option go_package = "github.com/AbstractBreazy/grpc-sandbox/example/grpc/gen/proto/go;grpc";
 
+import "google/api/annotations.proto";
+
 message IsLiveResponse {
-    string status = 1;
+    string status = 1 ;
 }
 
 message IsLiveRequest {
-    string param = 2;
+    string param = 1;
 }
 
 service Example {
-
     rpc GetStatus(IsLiveRequest) returns (IsLiveResponse){
         option(google.api.http) = {
             get: "/api/v1/example/internal/is_live"
         };
     }
-
 }

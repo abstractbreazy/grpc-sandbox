@@ -2,6 +2,7 @@ version: v1
 name: buf.build/abstractbreazy/exampleapis
 deps:
   - buf.build/googleapis/googleapis:c19a273b594646ccb53d16b7ec886a4d
+  - buf.build/envoyproxy/protoc-gen-validate:bb405eae115246f0b5ccf8997136e3d8
 lint:
   use:
     - DEFAULT

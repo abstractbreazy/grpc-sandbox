@@ -1,7 +1,7 @@
 version: v1
-name: buf.build/acme/exampleapis
+name: buf.build/abstractbreazy/exampleapis
 deps:
-  - buf.build/googleapis/googleapis
+  - buf.build/googleapis/googleapis:c19a273b594646ccb53d16b7ec886a4d
 lint:
   use:
     - DEFAULT

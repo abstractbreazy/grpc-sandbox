@@ -1,0 +1,24 @@
+name: buf-push
+on:
+  push:
+    branches:
+      - main
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    environment: BUF_TOKEN
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@v1
+        with:
+          token: ${{ secrets.BUF_TOKEN }}
+          setup_only: true
+          input: 'example/grpc/exampleapis'
+      - run: cd example/grpc/exampleapis && buf dep update 
+      - uses: bufbuild/buf-lint-action@v1
+        with:
+          input: 'example/grpc/exampleapis'
+          token: ${{ secrets.BUF_TOKEN }}
+      - if: ${{ github.event_name == 'push' }}
+        run: cd example/grpc/exampleapis && buf push --error-format github-actions --create --git-metadata
+      - run: buf --version 

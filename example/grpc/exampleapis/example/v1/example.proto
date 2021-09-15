@@ -2,24 +2,23 @@ syntax = "proto3";
 
 package example.v1;
 
+option go_package = "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto;grpc";
+
 import "google/api/annotations.proto";
 
-option go_package = "github.com/AbstractBreazy/grpc-sandbox/example/grpc/gen/proto/go;grpc";
+import "google/protobuf/empty.proto";
 
-message IsLiveResponse {
-    string status = 1;
-}
 
-message IsLiveRequest {
-    string param = 2;
-}
-
-service ExampleService {
-
-    rpc GetStatus(IsLiveRequest) returns (IsLiveResponse){
+service Example {
+    // Ping returns the <-pong message.
+    rpc Ping(google.protobuf.Empty) returns (PingResponse){
         option(google.api.http) = {
-            get: "/api/v1/example/internal/is_live"
+            get: "/v1/example/ping"
         };
     }
+}
 
+// PingResponse is the response from a Ping call.
+message PingResponse {
+    string message = 1;
 }

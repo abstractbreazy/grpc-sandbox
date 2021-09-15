@@ -1,0 +1,25 @@
+# IDE
+.idea
+.sublime-project
+*.sublime-workspace
+
+# IDE VS Code
+.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# Architecture specific extensions/prefixes
+*.exe
+*.test
+*.prof
+*.ou
+
+# others
+research.md

@@ -14,7 +14,7 @@ message IsLiveRequest {
     string param = 2;
 }
 
-service ExampleService {
+service Example {
 
     rpc GetStatus(IsLiveRequest) returns (IsLiveResponse){
         option(google.api.http) = {

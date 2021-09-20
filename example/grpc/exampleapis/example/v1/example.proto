@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package example.v1;
+package example.grpc;
 
 option go_package = "github.com/AbstractBreazy/grpc-sandbox/example/grpc/gen/proto/go;grpc";
 
@@ -8,14 +8,16 @@ import "google/api/annotations.proto";
 
 import "google/protobuf/empty.proto";
 
-message IsLiveResponse {
-    string status = 1 ;
-}
-
 service Example {
-    rpc GetStatus(google.protobuf.Empty) returns (IsLiveResponse){
+    // GetStatus returns the service status
+    rpc GetStatus(google.protobuf.Empty) returns (StatusResponse){
         option(google.api.http) = {
             get: "/api/v1/example/internal/is_live"
         };
     }
+}
+
+// StatusResponse is the response from a GetStatus call.
+message StatusResponse {
+    string status = 1;
 }

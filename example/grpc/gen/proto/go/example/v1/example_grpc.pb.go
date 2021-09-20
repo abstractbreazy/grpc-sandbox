@@ -19,7 +19,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExampleClient interface {
-	GetStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IsLiveResponse, error)
+	// GetStatus returns the service status
+	GetStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*StatusResponse, error)
 }
 
 type exampleClient struct {
@@ -30,9 +31,9 @@ func NewExampleClient(cc grpc.ClientConnInterface) ExampleClient {
 	return &exampleClient{cc}
 }
 
-func (c *exampleClient) GetStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IsLiveResponse, error) {
-	out := new(IsLiveResponse)
-	err := c.cc.Invoke(ctx, "/example.v1.Example/GetStatus", in, out, opts...)
+func (c *exampleClient) GetStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*StatusResponse, error) {
+	out := new(StatusResponse)
+	err := c.cc.Invoke(ctx, "/example.grpc.Example/GetStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -43,14 +44,15 @@ func (c *exampleClient) GetStatus(ctx context.Context, in *emptypb.Empty, opts .
 // All implementations should embed UnimplementedExampleServer
 // for forward compatibility
 type ExampleServer interface {
-	GetStatus(context.Context, *emptypb.Empty) (*IsLiveResponse, error)
+	// GetStatus returns the service status
+	GetStatus(context.Context, *emptypb.Empty) (*StatusResponse, error)
 }
 
 // UnimplementedExampleServer should be embedded to have forward compatible implementations.
 type UnimplementedExampleServer struct {
 }
 
-func (UnimplementedExampleServer) GetStatus(context.Context, *emptypb.Empty) (*IsLiveResponse, error) {
+func (UnimplementedExampleServer) GetStatus(context.Context, *emptypb.Empty) (*StatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 
@@ -75,7 +77,7 @@ func _Example_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/example.v1.Example/GetStatus",
+		FullMethod: "/example.grpc.Example/GetStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ExampleServer).GetStatus(ctx, req.(*emptypb.Empty))
@@ -87,7 +89,7 @@ func _Example_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(i
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Example_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "example.v1.Example",
+	ServiceName: "example.grpc.Example",
 	HandlerType: (*ExampleServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

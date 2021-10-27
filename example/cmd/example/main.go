@@ -4,14 +4,15 @@ import (
 	"net"
 	"os"
 
-	protos "github.com/AbstractBreazy/grpc-sandbox/example/grpc/gen/proto/go/example/v1"
-	"github.com/AbstractBreazy/grpc-sandbox/example/server"
+	protos "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto/example/v1"
+	"github.com/abstractbreazy/grpc-sandbox/example/server"
 	"github.com/hashicorp/go-hclog"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
 
 func main() {
+
 	log := hclog.Default()
 
 	// create a new gRPC server

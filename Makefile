@@ -12,7 +12,7 @@ buf-generate: # generate Go code
 
 .PHONY: image-create
 image-create: # build a binary Image.
-	buf build ./example/grpc/exampleapis -o ./envoy/descriptors/example.pb --as-file-descriptor-set
+	buf build ./example/grpc/exampleapis -o ./docker/envoy/images/example.pb --as-file-descriptor-set
 
 .PHONY: docker-start
 docker-start:

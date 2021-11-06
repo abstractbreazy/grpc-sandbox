@@ -35,7 +35,7 @@ static_resources:
           - name: envoy.filters.http_json_transcoder
             typed_config:
               "@type": type.googleapis.com/envoy.extensions.filters.http.grpc_json_transcoder.v3.GrpcJsonTranscoder
-              proto_descriptor: "descriptors/example.pb"
+              proto_descriptor: "envoy/images/example.pb"
               services: ["example.v1.Example"]
               match_incoming_request_route: false
               convert_grpc_status: true
@@ -68,9 +68,3 @@ static_resources:
                 socket_address:
                   address: host.docker.internal
                   port_value: 15010
-
-
-
-
-
-

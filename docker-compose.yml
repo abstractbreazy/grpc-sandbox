@@ -1,14 +1,15 @@
 version: '3.7'
 
 services:
-  envoy:
+  envoy-proxy:
     container_name: envoy-proxy
-    image: envoyproxy/envoy-dev:0264041ec7a271c0291aa2d761856045c90aef7e
+    build: 
+      context: .
+      dockerfile: docker/envoy/Dockerfile
+  
     ports:
       - 8080:8080
       - 9000:9000
     volumes:
-      - ./envoy/envoy.yaml:/etc/envoy/envoy.yaml
-
-
-
+      - ./docker/envoy:/docker/envoy
+    entrypoint: ["/entry.sh", "envoy", "-c", "/etc/envoy/envoy.yaml"]

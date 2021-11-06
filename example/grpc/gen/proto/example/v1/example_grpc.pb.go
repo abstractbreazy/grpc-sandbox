@@ -33,7 +33,7 @@ func NewExampleClient(cc grpc.ClientConnInterface) ExampleClient {
 
 func (c *exampleClient) GetStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*StatusResponse, error) {
 	out := new(StatusResponse)
-	err := c.cc.Invoke(ctx, "/example.grpc.Example/GetStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/example.v1.Example/GetStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ func _Example_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/example.grpc.Example/GetStatus",
+		FullMethod: "/example.v1.Example/GetStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ExampleServer).GetStatus(ctx, req.(*emptypb.Empty))
@@ -89,7 +89,7 @@ func _Example_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(i
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Example_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "example.grpc.Example",
+	ServiceName: "example.v1.Example",
 	HandlerType: (*ExampleServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

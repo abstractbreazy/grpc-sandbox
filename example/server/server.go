@@ -2,13 +2,13 @@ package server
 
 import (
 	"context"
-    protos "github.com/AbstractBreazy/grpc-sandbox/example/grpc/gen/proto/go/example/v1"
+    protos "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto/example/v1"
 	"github.com/hashicorp/go-hclog"
 	_ "google.golang.org/grpc"
     "google.golang.org/protobuf/types/known/emptypb"
 )
 
-// Compiler time check
+//Compiler time check
 var _ protos.ExampleServer = (*Example)(nil)
 
 // Example is a gRPC-server 

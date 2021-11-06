@@ -1,0 +1,20 @@
+name: buf-push
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bufbuild/buf-setup-action@v0.6.0
+      - uses: bufbuild/buf-lint-action@v1
+        with:
+          input: 'example/grpc'
+      - uses: bufbuild/buf-push-action@v1
+        with:
+          input: 'example/grpc'
+          buf_token: ${{ secrets.BUF_TOKEN }}
+
+              

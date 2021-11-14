@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package payments.v1;
+
+option go_package = "github.com/abstractbreazy/grpc-sandbox/payments/grpc/gen/proto;grpc";
+
+import "google/api/annotations.proto";
+
+import "google/protobuf/empty.proto";
+
+
+service Payments {
+    // Ping returns the service status
+    rpc Ping (google.protobuf.Empty) returns (Pong) {
+        option (google.api.http) = {
+            get: "/v1/ping"
+        };
+    }
+
+    rpc Create (Payment) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/payments/v1"
+            body: "*"
+        };
+    }
+
+    rpc Delete (DeletePayments) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/payments/v1"
+        };
+    }
+
+    rpc List (google.protobuf.Empty) returns (PaymentsList) {
+        option (google.api.http) = {
+            get: "/payments/v1"
+        };
+    }
+
+}
+
+// Pong is the response from a Ping call.
+message Pong {
+    string response = 1;
+}
+
+message Payment {
+    string date        = 1;
+    string type        = 2;
+    string description = 3;
+    int64 amount       = 4;
+}
+
+message PaymentsList {
+    repeated Payment payments = 1;
+}
+
+message DeletePayments {
+    int64 id      = 1;
+    int64 user_id = 2;
+}

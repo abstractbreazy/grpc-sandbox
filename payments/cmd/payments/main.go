@@ -4,8 +4,8 @@ import (
 	"net"
 	"os"
 
-	protos "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto/example/v1"
-	"github.com/abstractbreazy/grpc-sandbox/example/server"
+	protos "github.com/abstractbreazy/grpc-sandbox/payments/grpc/gen/proto/payments/v1"
+	"github.com/abstractbreazy/grpc-sandbox/payments/server"
 	"github.com/hashicorp/go-hclog"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -19,10 +19,10 @@ func main() {
 	gs := grpc.NewServer()
 
 	// create an instance of the Example server
-	cs := server.NewExample(log)
+	cs := server.NewPayments(log)
 
 	// register the Example server 
-	protos.RegisterExampleServer(gs, cs)
+	protos.RegisterPaymentsServer(gs, cs)
 
 	// register the reflection service which allows clients to deterimite the methods 
 	// for gRPC service.

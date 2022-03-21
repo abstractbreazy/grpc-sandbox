@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/go-hclog"
 	_"google.golang.org/grpc"
 
-    "google.golang.org/protobuf/types/known/emptypb"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 //Compiler time check

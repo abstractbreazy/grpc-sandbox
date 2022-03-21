@@ -2,9 +2,12 @@ package server
 
 import (
 	"context"
-    protos "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto/example/v1"
+
+	protos "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto/example/v1"
+
 	"github.com/hashicorp/go-hclog"
-	_ "google.golang.org/grpc"
+	_"google.golang.org/grpc"
+
     "google.golang.org/protobuf/types/known/emptypb"
 )
 

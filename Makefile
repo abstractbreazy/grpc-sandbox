@@ -1,3 +1,6 @@
+.PHONY: run
+run: go run ./example/cmd/example/main.go
+
 .PHONY: buf-build
 buf-build: # compile check
 	buf build ./example/grpc/exampleapis --error-format=json 

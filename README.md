@@ -8,7 +8,7 @@ If you have `Go`, `make` and `buf.build` tool installed, you should be able to j
 make
 ```
 
-I recommend completing Buf [Tour of Buf](https://docs.buf.build/tour/introduction)  to understand the functionality  of both the CLI and the BSR.
+I recommend completing [Tour of Buf](https://docs.buf.build/tour/introduction)  to understand the functionality  of both the CLI and the BSR.
 
 You can use [gRPCurl](https://github.com/fullstorydev/grpcurl) to interact with gRPC server.
 

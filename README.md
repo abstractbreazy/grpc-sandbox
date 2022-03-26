@@ -1,4 +1,4 @@
-# gRPC-Server Example
+## gRPC-Server Example
 
 Protobuf, gRPC, gRPC-gateway example using `buf.build` tool.
 

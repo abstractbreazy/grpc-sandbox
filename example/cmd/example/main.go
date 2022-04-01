@@ -6,7 +6,7 @@ import (
 
 	protos "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto/example/v1"
 	"github.com/abstractbreazy/grpc-sandbox/example/server"
-	
+
 	"github.com/hashicorp/go-hclog"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -35,6 +35,7 @@ func main() {
 		log.Error("Unable to listen", "error", err)
 		os.Exit(1)
 	}
-	log.Info("service starting...")
+	log.Info("service starting on 9092...")
+	
 	gs.Serve(l)
 }

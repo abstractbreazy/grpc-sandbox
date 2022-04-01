@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  envoy:
+    container_name: sandbox-envoy
+    build:
+      context: .
+      dockerfile: envoy.Dockerfile
+    ports:
+      - 8080:8080
+      - 9000:9000
+    volumes:
+     - ./envoy:/envoy
+    entrypoint: ["/entry.sh", "envoy", "-c", "/envoy/envoy.yaml"] 
+
+  
+
+

@@ -1,4 +1,6 @@
-### gRPC-Server Example
+## gRPC-JSON Transcoder 
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/abstractbreazy/grpc-sandbox)](https://goreportcard.com/report/github.com/abstractbreazy/grpc-sandbox)
 
 Protobuf, gRPC, Envoy    example using `buf.build` tool.
 
@@ -35,7 +37,7 @@ You can verify that *gRPC-JSON transcoding* works fine by sending the following 
 
 ``` bash
 curl -X 'GET' \
-  'https://localhost:8080/v1/example/ping' \
+  'http://localhost:8080/v1/example/ping' \
   -H 'accept: application/json'
 ```
 

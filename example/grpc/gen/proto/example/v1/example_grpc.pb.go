@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExampleClient interface {
 	// GetStatus returns the service status
-	GetStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*StatusResponse, error)
+	Ping(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PingResponse, error)
 }
 
 type exampleClient struct {
@@ -31,9 +31,9 @@ func NewExampleClient(cc grpc.ClientConnInterface) ExampleClient {
 	return &exampleClient{cc}
 }
 
-func (c *exampleClient) GetStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*StatusResponse, error) {
-	out := new(StatusResponse)
-	err := c.cc.Invoke(ctx, "/example.v1.Example/GetStatus", in, out, opts...)
+func (c *exampleClient) Ping(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PingResponse, error) {
+	out := new(PingResponse)
+	err := c.cc.Invoke(ctx, "/example.v1.Example/Ping", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,15 +45,15 @@ func (c *exampleClient) GetStatus(ctx context.Context, in *emptypb.Empty, opts .
 // for forward compatibility
 type ExampleServer interface {
 	// GetStatus returns the service status
-	GetStatus(context.Context, *emptypb.Empty) (*StatusResponse, error)
+	Ping(context.Context, *emptypb.Empty) (*PingResponse, error)
 }
 
 // UnimplementedExampleServer should be embedded to have forward compatible implementations.
 type UnimplementedExampleServer struct {
 }
 
-func (UnimplementedExampleServer) GetStatus(context.Context, *emptypb.Empty) (*StatusResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
+func (UnimplementedExampleServer) Ping(context.Context, *emptypb.Empty) (*PingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
 }
 
 // UnsafeExampleServer may be embedded to opt out of forward compatibility for this service.
@@ -67,20 +67,20 @@ func RegisterExampleServer(s grpc.ServiceRegistrar, srv ExampleServer) {
 	s.RegisterService(&Example_ServiceDesc, srv)
 }
 
-func _Example_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Example_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ExampleServer).GetStatus(ctx, in)
+		return srv.(ExampleServer).Ping(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/example.v1.Example/GetStatus",
+		FullMethod: "/example.v1.Example/Ping",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExampleServer).GetStatus(ctx, req.(*emptypb.Empty))
+		return srv.(ExampleServer).Ping(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -93,8 +93,8 @@ var Example_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ExampleServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetStatus",
-			Handler:    _Example_GetStatus_Handler,
+			MethodName: "Ping",
+			Handler:    _Example_Ping_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -14,6 +14,7 @@ require (
 require (
 	github.com/fatih/color v1.7.0 // indirect
 	github.com/google/go-cmp v0.5.6 // indirect
+	github.com/googleapis/googleapis v0.0.0-20220331202622-9da5e7f3789f // indirect
 	github.com/mattn/go-colorable v0.1.4 // indirect
 	github.com/mattn/go-isatty v0.0.10 // indirect
 	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4 // indirect

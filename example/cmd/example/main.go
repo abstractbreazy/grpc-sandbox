@@ -16,13 +16,13 @@ func main() {
 
 	log := hclog.Default()
 
-	// create a new gRPC server
+	// create a new gRPC server.
 	gs := grpc.NewServer()
 
-	// create an instance of the Example server
+	// create an instance of the Example server.
 	cs := server.NewExample(log)
 
-	// register the Example server 
+	// register the Example server. 
 	protos.RegisterExampleServer(gs, cs)
 
 	// register the reflection service which allows clients to deterimite the methods 

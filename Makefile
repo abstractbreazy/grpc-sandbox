@@ -1,17 +1,14 @@
-.PHONY: run
+.PHONY: run buf-build buf-lint buf-generate
 run: go run ./example/cmd/example/main.go
 
-.PHONY: buf-build
 buf-build: # compile check
 	buf build ./example/grpc/exampleapis --error-format=json 
 
-.PHONY: buf-lint
 buf-lint: # lint Protobuf files
 	buf lint ./example/grpc/exampleapis --error-format=json
 
-.PHONY: buf-generate
-buf-generate: # generate Go code
+buf-gen: # generate Go code
 	bash ./example/grpc/buf.gen.sh
-
-
-		
+	
+image-gen: # generate buf image
+	buf build ./example/grpc/exampleapis -o ./docker/protos/example.pb --as-file-descriptor-set

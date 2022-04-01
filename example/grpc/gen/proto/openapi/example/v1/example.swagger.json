@@ -19,12 +19,12 @@
     "/v1/example/status": {
       "get": {
         "summary": "GetStatus returns the service status",
-        "operationId": "Example_GetStatus",
+        "operationId": "Example_Ping",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1StatusResponse"
+              "$ref": "#/definitions/v1PingResponse"
             }
           },
           "default": {
@@ -68,14 +68,14 @@
         }
       }
     },
-    "v1StatusResponse": {
+    "v1PingResponse": {
       "type": "object",
       "properties": {
-        "status": {
+        "message": {
           "type": "string"
         }
       },
-      "description": "StatusResponse is the response from a GetStatus call."
+      "description": "PingResponse is the response from a GetStatus call."
     }
   }
 }

@@ -34,20 +34,20 @@ var _ = utilities.NewDoubleArray
 var _ = descriptor.ForMessage
 var _ = metadata.Join
 
-func request_Example_GetStatus_0(ctx context.Context, marshaler runtime.Marshaler, client ExampleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Example_Ping_0(ctx context.Context, marshaler runtime.Marshaler, client ExampleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
-	msg, err := client.GetStatus(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Ping(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_Example_GetStatus_0(ctx context.Context, marshaler runtime.Marshaler, server ExampleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Example_Ping_0(ctx context.Context, marshaler runtime.Marshaler, server ExampleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
-	msg, err := server.GetStatus(ctx, &protoReq)
+	msg, err := server.Ping(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -58,7 +58,7 @@ func local_request_Example_GetStatus_0(ctx context.Context, marshaler runtime.Ma
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterExampleHandlerFromEndpoint instead.
 func RegisterExampleHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ExampleServer) error {
 
-	mux.Handle("GET", pattern_Example_GetStatus_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Example_Ping_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -69,7 +69,7 @@ func RegisterExampleHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Example_GetStatus_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Example_Ping_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -77,7 +77,7 @@ func RegisterExampleHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			return
 		}
 
-		forward_Example_GetStatus_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Example_Ping_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -122,7 +122,7 @@ func RegisterExampleHandler(ctx context.Context, mux *runtime.ServeMux, conn *gr
 // "ExampleClient" to call the correct interceptors.
 func RegisterExampleHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ExampleClient) error {
 
-	mux.Handle("GET", pattern_Example_GetStatus_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Example_Ping_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -131,14 +131,14 @@ func RegisterExampleHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Example_GetStatus_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Example_Ping_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Example_GetStatus_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Example_Ping_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -146,9 +146,9 @@ func RegisterExampleHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 }
 
 var (
-	pattern_Example_GetStatus_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "example", "status"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Example_Ping_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "example", "status"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
-	forward_Example_GetStatus_0 = runtime.ForwardResponseMessage
+	forward_Example_Ping_0 = runtime.ForwardResponseMessage
 )

@@ -1,17 +1,35 @@
-.PHONY: run
+# env
+DOCKER_COMPOSE=docker-compose -f docker/docker-compose.yaml
+
+.PHONY: run buf-build buf-lint buf-generate image-gen docker-run docker-stop
+
+# starts envoy-proxy docker container.
+docker-run:
+	${DOCKER_COMPOSE} up -d
+
+# stops envoy-proxy docker container.
+docker-stop:
+	${DOCKER_COMPOSE} down
+
+# starts the service
 run: go run ./example/cmd/example/main.go
 
-.PHONY: buf-build
-buf-build: # compile check
+# compile check
+buf-build: 
 	buf build ./example/grpc/exampleapis --error-format=json 
 
-.PHONY: buf-lint
-buf-lint: # lint Protobuf files
+# lint .proto files
+buf-lint: 
 	buf lint ./example/grpc/exampleapis --error-format=json
 
-.PHONY: buf-generate
-buf-generate: # generate Go code
+# generate Go code
+buf-gen: 
 	bash ./example/grpc/buf.gen.sh
 
+# generate buf image	
+image-gen: 
+	buf build ./example/grpc/exampleapis -o ./docker/protos/example.pb --as-file-descriptor-set
 
-		
+ 	
+
+

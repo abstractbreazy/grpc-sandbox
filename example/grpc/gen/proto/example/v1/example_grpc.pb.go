@@ -19,7 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExampleClient interface {
-	// GetStatus returns the service status
+	// Ping returns the <-pong message.
 	Ping(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PingResponse, error)
 }
 
@@ -44,7 +44,7 @@ func (c *exampleClient) Ping(ctx context.Context, in *emptypb.Empty, opts ...grp
 // All implementations should embed UnimplementedExampleServer
 // for forward compatibility
 type ExampleServer interface {
-	// GetStatus returns the service status
+	// Ping returns the <-pong message.
 	Ping(context.Context, *emptypb.Empty) (*PingResponse, error)
 }
 

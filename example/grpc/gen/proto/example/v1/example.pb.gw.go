@@ -146,7 +146,7 @@ func RegisterExampleHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 }
 
 var (
-	pattern_Example_Ping_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "example", "status"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Example_Ping_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "example", "ping"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

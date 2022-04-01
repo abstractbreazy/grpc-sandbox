@@ -16,9 +16,9 @@
     "application/json"
   ],
   "paths": {
-    "/v1/example/status": {
+    "/v1/example/ping": {
       "get": {
-        "summary": "GetStatus returns the service status",
+        "summary": "Ping returns the \u003c-pong message.",
         "operationId": "Example_Ping",
         "responses": {
           "200": {
@@ -75,7 +75,7 @@
           "type": "string"
         }
       },
-      "description": "PingResponse is the response from a GetStatus call."
+      "description": "PingResponse is the response from a Ping call."
     }
   }
 }

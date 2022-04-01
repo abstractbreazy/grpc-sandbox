@@ -10,15 +10,15 @@ import "google/protobuf/empty.proto";
 
 
 service Example {
-    // GetStatus returns the service status
+    // Ping returns the <-pong message.
     rpc Ping(google.protobuf.Empty) returns (PingResponse){
         option(google.api.http) = {
-            get: "/v1/example/status"
+            get: "/v1/example/ping"
         };
     }
 }
 
-// PingResponse is the response from a GetStatus call.
+// PingResponse is the response from a Ping call.
 message PingResponse {
     string message = 1;
 }

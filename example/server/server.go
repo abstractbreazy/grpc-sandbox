@@ -6,7 +6,7 @@ import (
 	protos "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto/example/v1"
 
 	"github.com/hashicorp/go-hclog"
-	_"google.golang.org/grpc"
+	_ "google.golang.org/grpc"
 
 	"google.golang.org/protobuf/types/known/emptypb"
 )
@@ -27,6 +27,6 @@ func NewExample(l hclog.Logger) *Example {
 // GetStatus implements the ExampleServer GetStatus method.
 func (c *Example) Ping(ctx context.Context, _ *emptypb.Empty) (
 	*protos.PingResponse, error) {
-	c.log.Info("example.v1.Example.Ping method")		
+	c.log.Info("example.v1.Example.Ping method")
 	return &protos.PingResponse{Message: "<-Pong!"}, nil
 }

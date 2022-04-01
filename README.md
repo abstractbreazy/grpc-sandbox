@@ -48,10 +48,16 @@ You can use [gRPCurl](https://github.com/fullstorydev/grpcurl) to interact with 
 Example of gRPCurl usage: 
 
 ```bash
-grpcurl -plaintext localhost:9092 describe                     
+grpcurl \
+  -plaintext \
+  localhost:9092 
+  describe                     
 
-grpcurl -plaintext -d '{}' localhost:9092 example.v1.Example.Ping
-
+grpcurl \
+  -plaintext \
+  -d '{}' \
+  localhost:9092 \ 
+  example.v1.Example.Ping
 ```
 
 ### *Links*:

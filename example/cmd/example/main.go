@@ -22,10 +22,10 @@ func main() {
 	// create an instance of the Example server.
 	cs := server.NewExample(log)
 
-	// register the Example server. 
+	// register the Example server.
 	protos.RegisterExampleServer(gs, cs)
 
-	// register the reflection service which allows clients to deterimite the methods 
+	// register the reflection service which allows clients to deterimite the methods
 	// for gRPC service.
 	reflection.Register(gs)
 
@@ -36,6 +36,6 @@ func main() {
 		os.Exit(1)
 	}
 	log.Info("service starting on 9092...")
-	
+
 	gs.Serve(l)
 }

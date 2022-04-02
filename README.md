@@ -1,5 +1,5 @@
 ## gRPC-JSON Transcoder 
-
+[![Go Report Card](https://goreportcard.com/badge/github.com/logrusorgru/aurora)](https://goreportcard.com/report/github.com/logrusorgru/aurora)
 Protobuf, gRPC, Envoy    example using `buf.build` tool.
 
 If you have `Go`, `make` and `buf.build` tool installed, you should be able to just execute.

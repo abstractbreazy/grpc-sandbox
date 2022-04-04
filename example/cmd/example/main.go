@@ -11,9 +11,10 @@ import (
 )
 
 func main() {
-
-	log := hclog.Default()
-	var err error
+	var (
+		log = hclog.Default()
+		err error
+	)
 
 	// create an instance of the gRPC server.
 	var srv *server.Server
@@ -25,6 +26,7 @@ func main() {
 	// create an instance of the Example server.
 	cs := examplesrv.NewExample(log)
 
+	// register the Example server.
 	protos.RegisterExampleServer(srv.GRPC(), cs)
 
 	// run gRPC server asynchronously.

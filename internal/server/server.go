@@ -22,9 +22,11 @@ type Server struct {
 func New() (s *Server, err error) {
 	s = new(Server)
 
+	// create a TCP socket for incoming server connection.
 	if s.l, err = net.Listen("tcp", ":9092"); err != nil {
 		return
 	}
+	// create a new gRPC server.
 	s.srv = grpc.NewServer()
 
 	return
@@ -32,6 +34,8 @@ func New() (s *Server, err error) {
 
 // Run an gRPC server in a goroutine asynchronously.
 func (s *Server) RunAsync() {
+	// register the reflection service which allows clients to deterimite the methods
+ 	// for gRPC service.
 	reflection.Register(s.srv)
 	s.wg.Add(1)
 	go func() {

@@ -13,9 +13,9 @@ import (
 
 // Server initialized and wraps a gRPC server.
 type Server struct {
-	l 	net.Listener
+	l   net.Listener
 	srv *grpc.Server
-	wg   sync.WaitGroup
+	wg  sync.WaitGroup
 }
 
 // New initiates a new gRPC instance with listener.
@@ -60,5 +60,3 @@ func Wait() {
 	signal.Notify(sig, os.Interrupt, syscall.SIGQUIT, syscall.SIGTERM)
 	<-sig
 }
-
-

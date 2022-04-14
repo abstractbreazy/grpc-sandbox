@@ -50,6 +50,7 @@ func (s *Server) RunAsync() {
 func (s *Server) Close() (err error) {
 	s.srv.GracefulStop()
 	err = s.l.Close()
+	s.wg.Wait()
 	return
 }
 

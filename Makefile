@@ -28,7 +28,7 @@ buf-gen:
 
 # generate buf image	
 image-gen: 
-	buf build ./example/grpc/exampleapis -o ./docker/protos/example.pb --as-file-descriptor-set
+	buf build ./example/grpc/exampleapis -o ./docker/envoy/protos/example.pb --as-file-descriptor-set
 
  	
 

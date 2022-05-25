@@ -63,7 +63,7 @@ grpcurl \
 You can use `make` command to run unit-tests without running the app or building `envoy` container:
 
 ```bash 
-  make go-test 
+make go-test 
   ```
 
 ### *Links*:

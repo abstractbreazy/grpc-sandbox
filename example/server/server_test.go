@@ -8,12 +8,11 @@ import (
 	protos "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto/example/v1"
 	srv "github.com/abstractbreazy/grpc-sandbox/pkg/testutils"
 
-	"google.golang.org/grpc"
-	"google.golang.org/protobuf/types/known/emptypb"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"google.golang.org/grpc"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
-
 
 func dialAddress() (address string) {
 	const defaultDialAddress = "127.0.0.1:15010"
@@ -25,7 +24,7 @@ func dialAddress() (address string) {
 }
 
 type client struct {
-	conn *grpc.ClientConn
+	conn    *grpc.ClientConn
 	example protos.ExampleClient
 }
 
@@ -48,7 +47,7 @@ func (c *client) Close() (err error) {
 func TestGRPC_Ping(t *testing.T) {
 
 	var (
-		addr = dialAddress()
+		addr  = dialAddress()
 		grpcs srv.GRPCServer
 	)
 	require.NoError(t, grpcs.Start(addr))
@@ -58,15 +57,15 @@ func TestGRPC_Ping(t *testing.T) {
 	defer c.Close()
 
 	var (
-		ctx = context.Background()
-		err error
+		ctx         = context.Background()
+		err         error
 		pingMessage *protos.PingResponse
 	)
 
 	pingMessage, err = c.example.Ping(ctx, &emptypb.Empty{})
 	assert.NoError(t, err)
-	
-	assert.EqualValues(t, 
-		protos.PingResponse{Message: "Pong!"}.Message, 
+
+	assert.EqualValues(t,
+		protos.PingResponse{Message: "Pong!"}.Message,
 		pingMessage.Message)
 }

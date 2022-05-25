@@ -14,7 +14,7 @@ import (
 
 // a gRPC-Server for tests.
 type GRPCServer struct {
-	l net.Listener
+	l   net.Listener
 	srv *grpc.Server
 	wg  sync.WaitGroup
 }
@@ -39,7 +39,7 @@ func (grpcs *GRPCServer) Start(address string) (err error) {
 	protos.RegisterExampleServer(srv, cs)
 
 	grpcs.RunAsync()
-	
+
 	return
 }
 
@@ -52,7 +52,7 @@ func (s *GRPCServer) Close() (err error) {
 
 func (s *GRPCServer) RunAsync() {
 	// register the reflection service which allows clients to deterimite the methods
- 	// for gRPC service.
+	// for gRPC service.
 	reflection.Register(s.srv)
 	s.wg.Add(1)
 	go func() {

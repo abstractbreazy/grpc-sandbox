@@ -1,5 +1,5 @@
 # env
-DOCKER_COMPOSE=docker-compose -f docker/docker-compose.yaml
+DOCKER_COMPOSE=sudo docker-compose -f docker/docker-compose.yaml
 
 .PHONY: run buf-build buf-lint buf-generate image-gen docker-run docker-stop
 

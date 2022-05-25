@@ -5,7 +5,7 @@ import (
 
 	protos "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto/example/v1"
 	examplesrv "github.com/abstractbreazy/grpc-sandbox/example/server"
-	"github.com/abstractbreazy/grpc-sandbox/internal/server"
+	"github.com/abstractbreazy/grpc-sandbox/pkg/server"
 
 	"github.com/hashicorp/go-hclog"
 )

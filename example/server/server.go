@@ -28,5 +28,5 @@ func NewExample(l hclog.Logger) *Example {
 func (c *Example) Ping(ctx context.Context, _ *emptypb.Empty) (
 	*protos.PingResponse, error) {
 	c.log.Info("example.v1.Example.Ping method")
-	return &protos.PingResponse{Message: "<-Pong!"}, nil
+	return &protos.PingResponse{Message: "Pong!"}, nil
 }

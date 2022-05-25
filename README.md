@@ -58,6 +58,14 @@ grpcurl \
   example.v1.Example.Ping
 ```
 
+### *Tests*
+
+You can use `make` command to run unit-tests without running the app or building `envoy` container:
+
+```bash 
+  make go-test 
+  ```
+
 ### *Links*:
 - [Envoy gRPC-JSON transcoder](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/grpc_json_transcoder_filter)
 - [gRPCurl Library](https://github.com/fullstorydev/grpcurl)

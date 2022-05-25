@@ -1,7 +1,7 @@
 # env
 DOCKER_COMPOSE=sudo docker-compose -f docker/docker-compose.yaml
 
-.PHONY: run buf-build buf-lint buf-generate image-gen docker-run docker-stop
+.PHONY: run buf-build buf-lint buf-generate image-gen docker-run docker-stop go-test
 
 # starts envoy-proxy docker container.
 docker-run:
@@ -12,7 +12,12 @@ docker-stop:
 	${DOCKER_COMPOSE} down
 
 # starts the service
-run: go run ./example/cmd/example/main.go
+run: 
+	go run ./example/cmd/example/main.go
+
+# running tests.
+go-test: 
+	go test -v ./example/server
 
 # compile check
 buf-build: 

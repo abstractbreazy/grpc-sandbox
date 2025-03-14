@@ -20,8 +20,8 @@ type Example struct {
 }
 
 // NewExample creates a new Example server.
-func NewExample(l hclog.Logger) *Example {
-	return &Example{l}
+func NewExample(log hclog.Logger) *Example {
+	return &Example{log: log}
 }
 
 // GetStatus implements the ExampleServer GetStatus method.

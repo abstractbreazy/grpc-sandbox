@@ -1,18 +1,17 @@
-version: v1
+version: v2
+managed: 
+  enabled: true
+  disable:
+    - module: buf.build/googleapis/googleapis
 plugins:
-  - name: go
+  - local: protoc-gen-go
     out: gen/proto
     opt: paths=source_relative
-  - name: go-grpc
+  - local: protoc-gen-go-grpc
     out: gen/proto
-    opt:
-      - paths=source_relative
-      - require_unimplemented_servers=false 
-  - name: grpc-gateway
-    out:  gen/proto
     opt: 
       - paths=source_relative
-      - generate_unbound_methods=true
-  - remote: buf.build/grpc-ecosystem/plugins/openapiv2:v2.6.0-1
-    out: gen/proto/openapi  
+      - require_unimplemented_servers=false 
+  - remote: buf.build/grpc-ecosystem/openapiv2:v2.26.3
+    out: gen/proto/openapi
     

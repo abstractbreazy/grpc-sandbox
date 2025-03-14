@@ -1,12 +1,16 @@
 admin:
   address:
-    socket_address: {address: 0.0.0.0, port_value: 9901}
+    socket_address: 
+      address: 0.0.0.0
+      port_value: 9901
 
 static_resources:
   listeners:
   - name: grpc-listener
     address:
-      socket_address: {address: 0.0.0.0, port_value: 8080}
+      socket_address: 
+        address: 0.0.0.0
+        port_value: 8080
     filter_chains:
     - filters:
       - name: envoy.filters.network.http_connection_manager
@@ -22,8 +26,11 @@ static_resources:
               routes:
               # NOTE: by default, matching happens based on the gRPC route, and not on the incoming request path.
               # Reference: https://envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/grpc_json_transcoder_filter#route-configs-for-transcoded-requests
-              - match: {prefix: "/example.v1.Example"}
-                route: {cluster: sandbox, timeout: 60s}
+              - match: 
+                  prefix: "/example.v1.Example"
+                route: 
+                  cluster: example
+                  timeout: 60s
           http_filters:
           - name: envoy.filters.http.grpc_json_transcoder
             typed_config:
@@ -36,9 +43,10 @@ static_resources:
                 always_print_enums_as_ints: false
                 preserve_proto_field_names: false
           - name: envoy.filters.http.router
-
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
   clusters:
-  - name: sandbox
+  - name: example
     connect_timeout: 1.25s
     type: LOGICAL_DNS
     lb_policy: ROUND_ROBIN
@@ -49,7 +57,7 @@ static_resources:
         explicit_http_config:
           http2_protocol_options: {}
     load_assignment:
-      cluster_name: sandbox
+      cluster_name: example
       endpoints:
       - lb_endpoints:
         - endpoint:

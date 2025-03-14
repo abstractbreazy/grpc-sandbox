@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	protos "github.com/abstractbreazy/grpc-sandbox/example/grpc/gen/proto/example/v1"
-	example_server "github.com/abstractbreazy/grpc-sandbox/example/server"
+	examplesrv "github.com/abstractbreazy/grpc-sandbox/example/server"
 	"github.com/hashicorp/go-hclog"
 
 	"google.golang.org/grpc"
@@ -33,7 +33,7 @@ func (grpcs *GRPCServer) Start(address string) (err error) {
 
 	log := hclog.Default()
 
-	cs := example_server.NewExample(log)
+	cs := examplesrv.NewExample(log)
 
 	// register the Example server.
 	protos.RegisterExampleServer(srv, cs)

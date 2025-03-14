@@ -1,23 +1,27 @@
 # env
-DOCKER_COMPOSE=sudo docker-compose -f docker/docker-compose.yaml
+DOCKER_COMPOSE=docker-compose -f docker/docker-compose.yaml
 
 .PHONY: run buf-build buf-lint buf-generate image-gen docker-run docker-stop go-test
 
 # starts envoy-proxy docker container.
 docker-run:
-	${DOCKER_COMPOSE} up -d
+	${DOCKER_COMPOSE} up --remove-orphans --build
 
 # stops envoy-proxy docker container.
 docker-stop:
-	${DOCKER_COMPOSE} down
+	${DOCKER_COMPOSE} down -v --remove-orphans
 
+docker-rebuild:
+	${DOCKER_COMPOSE} down -v --remove-orphans
+	${DOCKER_COMPOSE} up --remove-orphans --build
+	
 # starts the service
 run: 
 	go run ./example/cmd/example/main.go
 
 # running tests.
-go-test: 
-	go test -v ./example/server
+test: 
+	go test -v ./...
 
 # compile check
 buf-build: 

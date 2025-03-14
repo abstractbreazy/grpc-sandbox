@@ -8,10 +8,10 @@ services:
       dockerfile: envoy.Dockerfile
     ports:
       - 8080:8080
-      - 9000:9000
+      - 9901:9901
     volumes:
      - ./envoy:/envoy
-    entrypoint: ["/entry.sh", "envoy", "-c", "/envoy/envoy.yaml"] 
+    entrypoint: ["envoy", "-c", "/envoy/envoy.yaml"] 
 
   
 

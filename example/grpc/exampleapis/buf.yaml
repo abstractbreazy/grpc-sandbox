@@ -1,11 +1,10 @@
-version: v1
+version: v2
 name: buf.build/abstractbreazy/exampleapis
 deps:
-  - buf.build/googleapis/googleapis:a821d6d6abbe4b439907ff7970459941
-  - buf.build/grpc-ecosystem/grpc-gateway:ff83506eb9cc4cf8972f49ce87e6ed3e
+  - buf.build/googleapis/googleapis:751cbe31638d43a9bfb6162cd2352e67
 lint:
   use:
-    - DEFAULT
+    - STANDARD
   except: 
     - PACKAGE_VERSION_SUFFIX
     - PACKAGE_DIRECTORY_MATCH
